@@ -21,7 +21,13 @@ except FileNotFoundError:
     print(f'Error: The file at {file_path} was not found.')
 except Exception as e:
     print(f'An error occurred: {e}')
-
-issue = input("Enter the issue number: ")  # add SQL injection prevention in the future
-if (issue_num := int(issue)) in numbers_dict:
-    print(f'Issue {issue_num}: {numbers_dict[issue_num]}')
+else:
+    try:
+        issue = input("Enter the issue number: ")
+        issue_num = int(issue)
+        if issue_num in numbers_dict:
+            print(f'Issue {issue_num}: {numbers_dict[issue_num]}')
+        else:
+            print(f'Issue number {issue_num} not found.')
+    except ValueError:
+        print("Invalid input. Please enter a valid issue number.")
