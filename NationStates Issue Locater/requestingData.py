@@ -1,7 +1,11 @@
 import re
+import os
 import requests
 
-file_path = r'C:\Users\Eklavya\Documents\CodeVS\NationStates\data.txt'
+# Construct the file path relative to the script's location
+script_dir = os.path.dirname(__file__)
+file_path = os.path.join(script_dir, 'data.txt')
+
 try:
     with open(file_path, 'r') as file:
         if (content := file.read()):
@@ -17,6 +21,7 @@ except FileNotFoundError:
     print(f'Error: The file at {file_path} was not found.')
 except Exception as e:
     print(f'An error occurred: {e}')
-issue = input("Enter the issue number: ") #add sql injection prevention in the future
+
+issue = input("Enter the issue number: ")  # add SQL injection prevention in the future
 if (issue_num := int(issue)) in numbers_dict:
     print(f'Issue {issue_num}: {numbers_dict[issue_num]}')
